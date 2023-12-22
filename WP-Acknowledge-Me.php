@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Acknowledge Page
+Plugin Name: WP Acknowledge Page
 Description: Redirect logged-in users to an acknowledgment page and record their acknowledgment status.
 Version: 1.0
 */
