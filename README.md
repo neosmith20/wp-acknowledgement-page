@@ -1,4 +1,4 @@
-# wp-acknowledge-now
+# WP-Acknowledge-Now
 WP Acknowledge Me
 This Wordpress Plugin will redirect logged-in users to an acknowledgment page and record their acknowledgment status.
 Logged-in users will be redirected to the acknowledgment page only once, where they can acknowledge or decline.
