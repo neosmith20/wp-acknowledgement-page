@@ -12,6 +12,6 @@ If the user clicks "Yes, I acknowledge," they will be redirected to the home pag
 
 ---
 **This section describes how to install the plugin and get it working.**
-1. Make a folder in the `/wp-content/plugins/` directory
+1. Make a folder called `wpacknowledgenow` in the `/wp-content/plugins/` directory
 1. Upload `WP-Acknowledge-Me.php` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
