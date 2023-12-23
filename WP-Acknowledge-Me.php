@@ -1,23 +1,38 @@
 <?php
-/*
-Plugin Name: WP Acknowledge Page
-Description: Redirect logged-in users to an acknowledgment page and record their acknowledgment status.
-Version: 1.0
-*/
-
-// Redirect logged-in users to the acknowledgment page
-function redirect_logged_in_users() {
+/**
+ * The plugin bootstrap file
+ *
+ * This file is read by WordPress to generate the plugin information in the plugin
+ * admin area. This file also includes all of the dependencies used by the plugin,
+ * registers the activation and deactivation functions, and defines a function
+ * that starts the plugin.
+ *
+ * @link              
+ * @since             1.0.0
+ * @package           wp-acknowledgment-page
+ *
+ * @wordpress-plugin
+ * Plugin Name:       wp-acknowledgment-page
+ * Plugin URI:        
+ * Description:       Redirect "Subscriber" users to an acknowledgment page and record their acknowledgment status.
+ * Version:           1.0.0
+ * Author:            Neosmith20
+ * Author URI:        
+ */
+// Redirect "Subscriber" users to the acknowledgment page
+function redirect_subscribed_users() {
     if (is_user_logged_in()) {
         $ack_page_slug = 'your-acknowledgment-page-slug'; // Replace with your actual page slug
         $ack_page_url = home_url($ack_page_slug);
+        $subscribed_role = 'Subscriber'; // Replace with your actual role name
 
-        if (!is_page($ack_page_slug) && !isset($_GET['acknowledged'])) {
+        if (current_user_can($subscribed_role) && !is_page($ack_page_slug) && !isset($_GET['acknowledged'])) {
             wp_redirect(add_query_arg('redirect_to', urlencode(home_url($_SERVER['REQUEST_URI'])), $ack_page_url));
             exit;
         }
     }
 }
-add_action('template_redirect', 'redirect_logged_in_users');
+add_action('template_redirect', 'redirect_subscribed_users');
 
 // Add acknowledgment buttons to the acknowledgment page
 function add_acknowledgment_buttons() {
@@ -54,7 +69,7 @@ function add_acknowledgment_buttons() {
                 update_user_meta($user_id, 'acknowledgment_status', false);
 
                 // Redirect based on user role
-                if (in_array($user_role, wp_get_current_user()->roles)) {
+                if ($user_role === 'Not Verified') {
                     wp_redirect(get_edit_user_link($user_id));
                 } else {
                     wp_redirect($do_not_acknowledge_url);
