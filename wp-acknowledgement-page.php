@@ -20,19 +20,19 @@
  * Author URI:        
  */
 // Redirect "Subscriber" users to the acknowledgment page
-function redirect_subscribed_users() {
+function redirect_subscriber_users() {
     if (is_user_logged_in()) {
         $ack_page_slug = 'your-acknowledgment-page-slug'; // Replace with your actual page slug
         $ack_page_url = home_url($ack_page_slug);
-        $subscribed_role = 'Subscriber'; // Replace with your actual role name
+        $subscriber_role = 'Subscriber'; // Replace with your actual role name
 
-        if (current_user_can($subscribed_role) && !is_page($ack_page_slug) && !isset($_GET['acknowledged'])) {
+        if (current_user_can($subscriber_role) && !is_page($ack_page_slug) && !isset($_GET['acknowledged'])) {
             wp_redirect(add_query_arg('redirect_to', urlencode(home_url($_SERVER['REQUEST_URI'])), $ack_page_url));
             exit;
         }
     }
 }
-add_action('template_redirect', 'redirect_subscribed_users');
+add_action('template_redirect', 'redirect_subscriber_users');
 
 // Add acknowledgment buttons to the acknowledgment page
 function add_acknowledgment_buttons() {
