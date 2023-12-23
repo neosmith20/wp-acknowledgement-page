@@ -121,8 +121,8 @@ function add_acknowledgment_status_field($user) {
                 <th><label for="acknowledgment_status">Acknowledgment Status</label></th>
                 <td>
                     <select name="acknowledgment_status" id="acknowledgment_status">
-                        <option value="1" <?php selected($acknowledgment_status, true); ?>Acknowledged</option>
-                        <option value="0" <?php selected($acknowledgment_status, false); ?>Not Acknowledged</option>
+                        <option value="1" <?php selected($acknowledgment_status, true); ?>>Acknowledged</option>
+                        <option value="0" <?php selected($acknowledgment_status, false); ?>>Not Acknowledged</option>
                     </select>
                 </td>
             </tr>
